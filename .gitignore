@@ -1,4 +1,6 @@
 node_modules/
+.pnpm-store/
+.xdg-config/
 dist/
 build/
 .wrangler/
@@ -10,6 +12,9 @@ build/
 .DS_Store
 .vscode/
 .idea/
+
+# Private application and recording preparation; never publish personal notes.
+/private/
 
 # wrangler-generated types — regenerate on `pnpm install` via api/postinstall
 api/worker-configuration.d.ts

@@ -1,0 +1,588 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap");
+
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #25352d;
+  background: #f5f3ed;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+.page-shell {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 34px;
+}
+.topbar {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dedfd6;
+}
+.brand,
+.site-footer span:first-child {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-size: 20px;
+  color: #214d3a;
+  text-decoration: none;
+}
+.topbar-note,
+.site-footer {
+  font-size: 12px;
+  color: #727c73;
+  letter-spacing: 0.02em;
+}
+.hero {
+  position: relative;
+  padding: 68px 0 62px;
+  border-bottom: 1px solid #dedfd6;
+  overflow: hidden;
+}
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: #72907d;
+  margin: 0 0 11px;
+}
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: clamp(46px, 7vw, 76px);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  color: #234835;
+  margin: 0;
+}
+.hero h1 em {
+  color: #a46d43;
+  font-weight: 500;
+}
+.hero-copy {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #69746b;
+  max-width: 430px;
+  margin: 20px 0 0;
+}
+.hero-mark {
+  position: absolute;
+  right: 45px;
+  top: 75px;
+  width: 190px;
+  height: 190px;
+  border: 1px solid #d2d8ca;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #90a591;
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  transform: rotate(-12deg);
+}
+.hero-mark:before,
+.hero-mark:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #d2d8ca;
+  border-radius: 50%;
+  inset: 14px;
+}
+.hero-mark:after {
+  inset: 28px;
+}
+.hero-mark span {
+  z-index: 1;
+  background: #f5f3ed;
+  padding: 2px;
+}
+.workspace {
+  padding: 39px 0 28px;
+}
+.workspace-heading,
+.section-head,
+.bill-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.workspace-heading {
+  margin-bottom: 22px;
+}
+.workspace-heading h2 {
+  font:
+    500 30px "Playfair Display",
+    serif;
+  margin: 0;
+  color: #263e31;
+}
+.home-chip,
+.count-pill {
+  font-size: 11px;
+  color: #597361;
+  background: #e7eee5;
+  border-radius: 30px;
+  padding: 8px 12px;
+}
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #74a17b;
+  margin-right: 7px;
+}
+.banner {
+  padding: 11px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  margin: 0 0 14px;
+}
+.error-banner {
+  background: #f8e9e4;
+  color: #8c392d;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.error-banner span {
+  font-weight: 700;
+}
+.success-banner {
+  background: #e7eee5;
+  color: #3c684b;
+}
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.panel {
+  background: #fffefa;
+  border: 1px solid #e4e2d9;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px #31402b08;
+}
+.form-panel {
+  padding: 20px;
+}
+.panel-title {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  margin-bottom: 17px;
+}
+.step {
+  font:
+    500 13px "Playfair Display",
+    serif;
+  color: #a46d43;
+  border: 1px solid #e6d9c9;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.panel-title h3,
+.section-head h3 {
+  font:
+    500 19px "Playfair Display",
+    serif;
+  color: #2b4435;
+  margin: 0;
+}
+.panel-title p {
+  font-size: 11px;
+  color: #8b9188;
+  margin: 4px 0 0;
+}
+.form-panel label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #69766d;
+  margin: 12px 0 6px;
+}
+.label-hint {
+  font-weight: 400;
+  color: #9da39a;
+}
+.inline-form {
+  display: flex;
+  gap: 8px;
+}
+.form-panel input,
+.bill-form input {
+  width: 100%;
+  border: 1px solid #e0e2d9;
+  background: #fff;
+  border-radius: 7px;
+  padding: 10px 11px;
+  font-size: 12px;
+  color: #344238;
+  outline: none;
+}
+.form-panel input:focus,
+.bill-form input:focus {
+  border-color: #88a28b;
+  box-shadow: 0 0 0 3px #e9efe8;
+}
+.form-panel button,
+.bill-form button {
+  border: 0;
+  border-radius: 7px;
+  padding: 0 16px;
+  background: #28573f;
+  color: white;
+  font-weight: 600;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.form-panel button:hover,
+.bill-form button:hover,
+.pay-button:hover {
+  background: #1b4530;
+}
+.form-panel button:disabled,
+.bill-form button:disabled,
+.pay-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(245px, 0.8fr);
+  gap: 14px;
+}
+.bills-panel,
+.balance-panel {
+  padding: 22px;
+}
+.section-head {
+  margin-bottom: 17px;
+}
+.section-head .eyebrow {
+  margin-bottom: 6px;
+}
+.count-pill {
+  padding: 6px 10px;
+  background: #f1f0e9;
+  color: #7b8176;
+}
+.bill-form {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #eeede6;
+}
+.bill-form button {
+  padding: 0 14px;
+}
+.money-input {
+  position: relative;
+}
+.money-input span {
+  position: absolute;
+  left: 11px;
+  top: 10px;
+  color: #94a095;
+  font-size: 12px;
+}
+.money-input input {
+  padding-left: 23px;
+}
+.empty-state {
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+.empty-icon {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e3e3d9;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  color: #77917b;
+}
+.empty-state h4 {
+  font:
+    500 17px "Playfair Display",
+    serif;
+  margin: 12px 0 5px;
+  color: #405747;
+}
+.empty-state p {
+  max-width: 300px;
+  margin: 0;
+  color: #858d84;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.state-block {
+  min-height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #78857a;
+  font-size: 12px;
+}
+.spinner {
+  width: 17px;
+  height: 17px;
+  border: 2px solid #dce5dc;
+  border-top-color: #548261;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.bill-list {
+  display: grid;
+  gap: 10px;
+}
+.bill-card {
+  border: 1px solid #e8e6de;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.bill-card-head {
+  padding: 14px 15px;
+  border-bottom: 1px solid #eeede7;
+}
+.bill-card-head h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #344a3a;
+  margin: 0;
+}
+.bill-card-head p {
+  font-size: 10px;
+  color: #969b92;
+  margin: 4px 0 0;
+}
+.bill-card-head strong {
+  font:
+    500 17px "Playfair Display",
+    serif;
+  color: #315940;
+}
+.share-list,
+.balance-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.share-list li,
+.balance-list li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0efe9;
+  font-size: 11px;
+  color: #536056;
+}
+.share-list li:last-child,
+.balance-list li:last-child {
+  border-bottom: 0;
+}
+.avatar {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf0e8;
+  color: #69816c;
+  font:
+    500 12px "Playfair Display",
+    serif;
+}
+.share-name,
+.balance-list li > span:nth-child(2) {
+  flex: 1;
+}
+.share-amount {
+  color: #4b594d;
+  font-weight: 600;
+}
+.paid-tag {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #558065;
+  background: #e9f1e9;
+  padding: 5px 8px;
+  border-radius: 12px;
+}
+.pay-button {
+  font-size: 10px;
+  border: 0;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: #fff;
+  background: #477653;
+}
+.balance-icon {
+  font-size: 24px;
+  color: #9ab09a;
+}
+.balance-panel {
+  display: flex;
+  flex-direction: column;
+}
+.balance-list li {
+  padding: 11px 0;
+}
+.balance-list strong {
+  font-size: 12px;
+  color: #315940;
+}
+.muted-message {
+  font-size: 12px;
+  color: #8b938a;
+  line-height: 1.6;
+  margin: 5px 0 auto;
+}
+.balance-footnote {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #eeede6;
+  color: #929990;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.workspace-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 2px;
+  color: #90978e;
+  font-size: 10px;
+}
+.text-button {
+  border: 0;
+  background: none;
+  color: #597c61;
+  font-size: 10px;
+}
+.text-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.site-footer {
+  border-top: 1px solid #dedfd6;
+  padding: 19px 0 27px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-footer span:first-child {
+  font-size: 15px;
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    padding: 0 18px;
+  }
+  .hero {
+    padding: 54px 0 48px;
+  }
+  .hero-mark {
+    right: -55px;
+    top: 65px;
+    opacity: 0.48;
+    transform: scale(0.75) rotate(-12deg);
+  }
+  .hero-copy {
+    max-width: 340px;
+    position: relative;
+    z-index: 2;
+  }
+  .setup-grid,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .bill-form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bill-form button {
+    grid-column: 1 / -1;
+    padding: 11px;
+  }
+  .balance-panel {
+    min-height: 200px;
+  }
+  .workspace {
+    padding-top: 30px;
+  }
+}
+@media (max-width: 430px) {
+  .hero-mark {
+    display: none;
+  }
+  .topbar-note {
+    font-size: 10px;
+  }
+  .workspace-heading h2 {
+    font-size: 26px;
+  }
+  .home-chip {
+    font-size: 9px;
+    padding: 7px 9px;
+  }
+  .form-panel,
+  .bills-panel,
+  .balance-panel {
+    padding: 16px;
+  }
+  .bill-form {
+    grid-template-columns: 1fr;
+  }
+  .bill-form button {
+    grid-column: auto;
+  }
+  .share-list li {
+    gap: 7px;
+    padding: 9px;
+  }
+  .pay-button {
+    padding: 6px 7px;
+  }
+  .workspace-footer {
+    font-size: 9px;
+  }
+}
