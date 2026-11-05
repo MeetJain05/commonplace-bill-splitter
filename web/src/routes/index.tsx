@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const Route = createFileRoute('/')({ component: Home })
 
@@ -38,11 +38,16 @@ function Home() {
   const [actionBusy, setActionBusy] = useState(false)
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
+  const paymentKeys = useRef(new Map<string, string>())
+  const latestRefresh = useRef(0)
 
   const refresh = useCallback(async (id: string) => {
+    const refreshId = ++latestRefresh.current
     if (!id.trim()) {
       setBills([])
       setBalances([])
+      setError('')
+      setLoading(false)
       return
     }
     setLoading(true)
@@ -52,19 +57,24 @@ function Home() {
         request<{ bills: Bill[] }>(`/api/homes/${encodeURIComponent(id)}/bills`),
         request<{ balances: Balance[] }>(`/api/homes/${encodeURIComponent(id)}/balances`),
       ])
+      if (refreshId !== latestRefresh.current) return
       setBills(billResult.bills)
       setBalances(balanceResult.balances)
     } catch (cause) {
-      setBills([])
-      setBalances([])
+      if (refreshId !== latestRefresh.current) return
       setError(cause instanceof Error ? cause.message : 'Could not load this home.')
     } finally {
-      setLoading(false)
+      if (refreshId === latestRefresh.current) setLoading(false)
     }
   }, [])
 
   useEffect(() => {
+    setBills([])
+    setBalances([])
     void refresh(homeId)
+    return () => {
+      latestRefresh.current += 1
+    }
   }, [homeId, refresh])
 
   async function createHome(event: React.FormEvent<HTMLFormElement>) {
@@ -113,12 +123,33 @@ function Home() {
 
   async function payShare(billId: string, shareId: string) {
     await perform(async () => {
-      await request<Share>(
-        `/api/bills/${encodeURIComponent(billId)}/shares/${encodeURIComponent(shareId)}/pay`,
-        {
-          method: 'POST',
-          headers: { 'Idempotency-Key': crypto.randomUUID() },
-        },
+      const idempotencyKey = paymentKeys.current.get(shareId) ?? crypto.randomUUID()
+      paymentKeys.current.set(shareId, idempotencyKey)
+      let paid: Share
+      try {
+        paid = await request<Share>(
+          `/api/bills/${encodeURIComponent(billId)}/shares/${encodeURIComponent(shareId)}/pay`,
+          {
+            method: 'POST',
+            headers: { 'Idempotency-Key': idempotencyKey },
+          },
+        )
+      } catch (cause) {
+        await refresh(homeId)
+        throw cause
+      }
+      paymentKeys.current.delete(shareId)
+      setBills((current) =>
+        current.map((bill) =>
+          bill.id !== billId
+            ? bill
+            : {
+                ...bill,
+                shares: bill.shares.map((share) =>
+                  share.id === shareId ? { ...share, paidAt: paid.paidAt } : share,
+                ),
+              },
+        ),
       )
       await refresh(homeId)
       setNotice('Share marked as paid.')
